@@ -1,23 +1,8 @@
 <app-header></app-header>
-
-<<<<<<< HEAD
-=======
-  <div *ngIf="isLoading" style="text-align:center" >
-          <app-loader></app-loader>
-          <div class="overlay">
-        </div>
-        </div>
->>>>>>> 81e3dceb9a4ade8807b1b11303dba6e0722dd8bd
-
-
  <div class="container"> 
   <div class="alert alert-danger" *ngIf="error">
     <span class="alert-text">
-<<<<<<< HEAD
       {{error.message}}
-=======
-      {{ error}}
->>>>>>> 81e3dceb9a4ade8807b1b11303dba6e0722dd8bd
     </span>
   </div>
 <!--   <div class="container"> -->
@@ -32,10 +17,6 @@
       <button type="button" style="float:right" class="btn btn-primary " (click)="download()">Download</button>
       <form (ngSubmit)="onSubmit(emailForm)" #emailForm="ngForm">
 
-<<<<<<< HEAD
-=======
-      
->>>>>>> 81e3dceb9a4ade8807b1b11303dba6e0722dd8bd
         <div class="col-xs-5">
           <div class="form-group">
             <label for="name">Subject</label>
@@ -53,13 +34,8 @@
         <div class="col-sm-12">
           <h4>Upload Section</h4>
           <div id="fileSelector">
-<<<<<<< HEAD
             <input type="file"  style="display :none" id="fileUpload" (change)="onFileChange($event)"  ngModel name="fileUpload" required
               fileUpload multiple #fileInput>
-=======
-            <input type="file"  style="display :none" id="fileUpload" (change)="onFileChange($event,emailForm)"  ngModel name="fileUpload" required
-              fileUpload #fileInput accept=".csv">
->>>>>>> 81e3dceb9a4ade8807b1b11303dba6e0722dd8bd
               <button type="button" (click)="fileInput.click()">Choose Files .. </button>
               <br>
               <div class="row uploadList" *ngFor="let file of selectedFiles;let i = index">

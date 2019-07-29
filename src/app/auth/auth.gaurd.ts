@@ -18,7 +18,7 @@ export class AuthGaurd implements CanActivate {
             if (isAuthUser) {
                 return true;
             }
-            return this.router.createUrlTree(['/auth']);
+            return this.router.createUrlTree(['/login']);
 
         }))
     }

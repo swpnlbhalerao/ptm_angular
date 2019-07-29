@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
-import {  BehaviorSubject } from 'rxjs';
+import {  BehaviorSubject, Subject } from 'rxjs';
 import { User } from './user.model';
 import { Router } from '@angular/router';
+import { PtmService } from '../ptm.service';
 
 export interface AuthResponse {
     email: string,
@@ -21,12 +22,12 @@ export class AuthService {
     user = new BehaviorSubject<User>(null);//return data from previous subrciption
     tokenExpirationTImer: any;
     errorMessage: String = "An unknow error occurred";
-    constructor(private http: HttpClient, private router: Router) {
+    constructor(private ptmService : PtmService, private router: Router) {
 
     }
 
 
-    signUp(signupDetails) {
+    /* signUp(signupDetails) {
         return this.http.post<AuthResponse>('https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyA2V9BnT6VbfI-vEiOR3aS33LGThHUPy4w',
             {
                 email: signupDetails.email,
@@ -35,9 +36,9 @@ export class AuthService {
             }).pipe(tap(responseData => {
                 this.handleAuthenication(responseData.email, responseData.idToken, responseData.idToken, +responseData.expiresIn);
             }));
-    }
+    } */
 
-    login(loginDetails) {
+    /* login(loginDetails) {
         console.log(loginDetails);
         console.log(loginDetails.email);
         return this.http.post<AuthResponse>('https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyA2V9BnT6VbfI-vEiOR3aS33LGThHUPy4w',
@@ -49,7 +50,20 @@ export class AuthService {
         ).pipe(tap(responseData => {
             this.handleAuthenication(responseData.email, responseData.localId, responseData.idToken, +responseData.expiresIn);
         }));
-    }
+    } */
+    login(loginDetails) {
+        console.log(loginDetails);
+        console.log(loginDetails.email);
+        const object={
+            userName : loginDetails.email,
+            password : loginDetails.password
+        }
+        return this.ptmService.postData('/api/user/login',null,object).pipe(tap(responseData => {
+        /* console.log("response data",responseData); */
+         this.handleAuthenication(responseData.userInfo.email, responseData.userInfo._id, responseData.authtoken, +responseData.expiresIn,responseData.userInfo.userName); 
+        }));
+    } 
+
 
 
     logout() {
@@ -67,14 +81,15 @@ export class AuthService {
             email: string,
             id: string,
             _token: string,
-            _tokenExpDate: string
+            _tokenExpDate: string,
+            userName : string
         } = JSON.parse(localStorage.getItem('userData'));
 
         if (!userData) {
             return;
         }
 
-        const userLoaded = new User(userData.email, userData.id, userData._token, new Date(userData._tokenExpDate));
+        const userLoaded = new User(userData.email, userData.id, userData._token, new Date(userData._tokenExpDate),userData.userName);
         if (userLoaded.token) {
             this.user.next(userLoaded);
             const expireInTime = new Date(userData._tokenExpDate).getTime() - new Date().getTime();
@@ -90,9 +105,9 @@ export class AuthService {
 
     }
 
-    private handleAuthenication(email: string, userId: string, token: string, expiresIn: number) {
+    private handleAuthenication(email: string, userId: string, token: string, expiresIn: number,userName:string) {
         const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
-        const user = new User(email, userId, token, expirationDate);
+        const user = new User(email, userId, token, expirationDate,userName);
         this.user.next(user);
         localStorage.setItem("userData", JSON.stringify(user));
         this.autoLogout(expiresIn * 1000);

@@ -16,8 +16,8 @@ export class ErrorInterceptor implements HttpInterceptor {
                     // client-side error
                     errorMessage = `Error: ${error.error.message}`;
                 } else {
-
-                    switch (error.error.error.message) {
+                    errorMessage = `Error Code: ${error.error.status} \nMessage: ${error.error.message}`;
+                    /* switch (error.error.message) {
                         case 'EMAIL_EXISTS':
                             errorMessage = 'This email already exists'
                             break;
@@ -35,7 +35,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                             
                         default:
                             errorMessage = `Error Code: ${error.status} \nMessage: ${error.message}`;
-                    }
+                    } */
                 }
 
                 return throwError(errorMessage);

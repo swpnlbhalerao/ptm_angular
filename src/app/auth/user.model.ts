@@ -4,7 +4,8 @@ constructor(
     public email:string,
     public id:string,
     public _token:string,
-    public _tokenExpDate:Date
+    public _tokenExpDate:Date,
+    public userName:string
 ){}
 
 get token(){

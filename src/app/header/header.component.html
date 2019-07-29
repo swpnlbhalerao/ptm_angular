@@ -12,9 +12,13 @@
                         <li routerLinkActive="active" *ngIf="isAuthenticated"><a  routerLink="/payShare">Pay Share</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
+                    <li><!-- <span class="header-text">{{userInfo.userName}}</span> -->
+                        <span class="navbar-brand">{{userInfo.userName}}</span>
+                    </li>
                     <li routerLinkActive="active">
                         <a style="cursor: pointer;" (click)="logout()"><span class="header-text">Logout</span></a>
                     </li>
+
         </ul>
             </div> 
         </div>

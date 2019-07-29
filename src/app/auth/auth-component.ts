@@ -29,7 +29,7 @@ export class AuthComponent {
                  this.router.navigate(['dashboard'])
              },
              error=>{
-              console.log(error);
+              console.log("Login Error",error);
                 this.error=error
              },
          );
