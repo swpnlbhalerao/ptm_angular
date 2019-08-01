@@ -1,0 +1,57 @@
+<app-header></app-header>
+  <div class="container  payShare-container">
+    
+    
+      <div class="row">
+        <form (ngSubmit)="onSubmit(payForm)" #payForm ="ngForm">
+            <h4 class="">Pay your Share </h4>
+            <div class="alert alert-danger" *ngIf="error">
+              <span class="alert-text">
+                {{error}}
+              </span>
+            </div>
+              <div class="alert alert-success" *ngIf="response">
+                <span class="alert-text">
+                  {{response}}
+                </span>
+              </div>
+            <div class="col-xs-5 centerEx">
+              
+                <div class="form-group">
+                    <label for="name">Amount</label>
+                    <input type="number" id="amount" class=form-control ngModel name="amount" required subject>
+                  </div>
+              
+                  <div class="form-group">
+                      <label for="name">Pay Date</label>
+                      <input placeholder="yyyy-mm-dd" id="payDate" class=form-control ngModel name="payDate" type="text" [bsConfig]="datePickerConfig"
+                        [minDate]="minDate" [maxDate]="maxDate" 
+                      bsDatepicker required payDate>
+                    </div>
+                  <br>
+                     <div class="">
+                        <button class="btn btn-danger" type="button" name="Submit" alt="Reset" [disabled]=" !payForm.dirty  "
+                        (click)=resetForm(payForm)>Reset</button> &nbsp;
+                        <button class="btn btn-primary" type="submit" name="Submit" alt="Trigger Email"
+                          [disabled]="!payForm.valid || disableBtns">Pay</button>
+                      </div>
+ 
+              </div>
+           
+
+
+
+        </form>
+
+
+
+      </div>
+
+
+
+
+    
+
+
+
+  </div>

@@ -1,0 +1,118 @@
+<app-header></app-header>
+ 
+<div class="container">
+  <h2>Payment History</h2>
+<!--   <p>All records </p> -->
+<div class="alert alert-danger" *ngIf="error">
+        <span class="alert-text">
+           {{error}}
+        </span>
+     </div>
+<div class = "panel panel-default border-margin">
+
+  <div class="panel-body" *ngFor="let user of payData;let i=index">
+  <div class = "panel panel-default inner-border-margin">
+     <div class="panel-body pointerCursor"  (click)="showMore(i)">
+      
+      <div class="row">
+      <div class="col-xs-8">
+          Amount : {{user.amount}}
+      </div>
+      <div class="col-xs-16">
+            Payment Date : {{user.paymentDate}}
+      </div>
+      <br>
+      <div class="col-xs-8">
+            Status : {{user.status}}
+      </div>
+      <div class="col-xs-16">
+            Created Date : {{user.crtDate | date}}
+      </div>
+    </div>
+      <br>
+      <div class="row" *ngIf="openId===i && toggle">
+
+          <div class="col-xs-8">
+                Approved By : {{user.mdyBy}}
+          </div>
+          <div class="col-xs-16">
+                Approved Date : {{user.mdyDate}}
+          </div>
+          
+      </div>
+
+
+    </div>
+    
+  </div>
+    </div>
+ 
+    <!-- <div class="panel-body">
+        <div class = "panel panel-default inner-border-margin">
+            <div class="panel-body pointerCursor" (click)="showMore(1)">
+      
+                <div class="row">
+                <div class="col-xs-8">
+                    Panel Content
+                </div>
+                <div class="col-xs-16">
+                    Panel Content
+                </div>
+                <br>
+                <div class="col-xs-8">
+                    Panel Content
+                </div>
+                <div class="col-xs-16">
+                    Panel Content
+                </div>
+              </div>
+                <br>
+                <div class="row" *ngIf="openId===1 && toggle">
+          
+                    <div class="col-xs-8">
+                        Panel Content
+                    </div>
+                    <div class="col-xs-16">
+                        Panel Content
+                    </div>
+                    <br>
+                    <div class="col-xs-8">
+                        Panel Content
+                    </div>
+                    <div class="col-xs-16">
+                        Panel Content
+                    </div>
+                </div>
+          
+          
+              </div>
+          
+        </div>
+          </div> -->
+  
+
+<!--   <div class = "panel-heading">Panel Heading</div>
+ -->  
+
+ <!--  <table class = "table">
+
+    <tr>
+      <td>A</td>
+      <td>B</td>
+   </tr>
+
+    <tr>
+        <td>Product A</td>
+        <td>200</td>
+     </tr>
+     
+     <tr>
+        <td>Product B</td>
+        <td>400</td>
+   
+     </tr>
+  </table> -->
+  
+</div> 
+
+</div>

@@ -12,22 +12,25 @@ import { interceptProviders } from './interceptors';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EmailComponent } from './email/email.component';
 import { LoaderComponent } from './loader/loader.component';
-
+import { PayshareComponent } from './payshare/payshare.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PayhistoryComponent } from './payhistory/payhistory.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-
     HighchartsChartComponent,
     AuthComponent,
     AlertComponent,
     EmailComponent,
     DashboardComponent,
-
     AuthComponent,
     EmailComponent,
-    LoaderComponent
+    LoaderComponent,
+    PayshareComponent,
+    PayhistoryComponent
 
   ],
   imports: [
@@ -35,7 +38,9 @@ import { LoaderComponent } from './loader/loader.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BsDatepickerModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [interceptProviders],
   bootstrap: [AppComponent]

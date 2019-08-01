@@ -19,7 +19,7 @@ export class PtmService{
   
     postData(endpoint: String, params: Object, options: Object): Observable<any> {
      const apiUrl = this.baseServerURL +endpoint //this.appendParamsToUrl(endpoint, params);
-     console.log(apiUrl);
+    /*  console.log(apiUrl); */
      return this.httpClient.post(apiUrl, options);
     }
 
